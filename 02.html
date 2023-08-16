@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<div id="app">
+    计算器：{{counter}}
+
+
+    <div id="vim-1"></div>
+    <div id="vim-2"></div>
+    <div id="vim-3"></div>
+    <div id="vim-4"></div>
+    <div id="vim-5"></div>
+    <div id="vim-6"></div>
+    <div id="vim-7"></div>
+    <div id="vim-8"></div>
+    <div id="vim-9"></div>
+    <div id="vim-0"></div>
+</div>
+
+
+<script src="vue.global.js"></script>
+<script>
+    const App = {
+        //初始数据
+        data() {
+            return {
+                counter: 100
+            }
+
+        }
+
+    }
+
+    //全局api對象
+    Vue.createApp(App).mount('#app')
+</script>
+</body>
+</html>
