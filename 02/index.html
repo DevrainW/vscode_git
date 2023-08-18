@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <script src="js/vue.global.js"></script>
+    <script src="js/marked.js"></script>
+    <script src="js/moment.js"></script>
+    <div id="notebook">
+
+        <aside class="side-bar">
+            <div class="toolbar">
+                <button v-on:click="addNote" v-bind:title="addButtonTitle"><i
+                        class="material-icons">add</i>添加笔记</button>
+            </div>
+            <div class="notes">
+                <div class="note" v-for="note in sortedNotes" v-on:click="selectNote(note)"
+                    v-bind:class="{selected:note===selectedNote}">
+                    <i class="icon material-icons" v-if="note.favorite">star</i>
+                    {{note.title}}
+                </div>
+            </div>
+        </aside>
+
+        <template v-if="selectedNote">
+            <section class="main">
+                <div class="toolbar">
+                    <input placeholder="笔记标题" v-model="selectedNote.title" />
+                    <button v-on:click="favoriteNote"><i class="material-icons">{{selectedNote.favorite ? 'star':
+                            'star_border'}}</i></button>
+                    <button v-on:click="removeNote" title="删除笔记"><i class="material-icons">delete</i>删除</button>
+                </div>
+                <textarea v-model="selectedNote.content"></textarea>
+                <div class="toolbar status-bar">
+                    <span class="date">
+                        <span class="label">创建于</span>
+                        <span class="value">{{selectedNote.created |date}}</span>
+                    </span>
+                    <span class="lines">
+                        <span class="label">行数：</span>
+                        <span class="value">{{linesCount}}</span>
+                    </span>
+                    <span class="words">
+                        <span class="label">单词数：</span>
+                        <span class="value">{{wordsCount}}</span>
+                    </span>
+                    <span class="characters">
+                        <span class="label">字符数：</span>
+                        <span class="value">{{charactersCount}}</span>
+                    </span>
+                </div>
+            </section>
+
+            <aside class="preview" v-html="notePreview">
+                {{notePreview}}
+            </aside>
+        </template>
+    </div>
+
+
+
+
+
+
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
